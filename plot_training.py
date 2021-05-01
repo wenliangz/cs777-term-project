@@ -8,7 +8,7 @@ rcParams.update({'figure.autolayout': True})
 
 epochs = []
 costs = []
-with open('training_printout.txt', 'r') as f:
+with open('docs/training_printout.txt', 'r') as f:
     lines = f.readlines()
     for line in lines:
         line = line.strip()

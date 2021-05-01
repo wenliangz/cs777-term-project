@@ -41,7 +41,8 @@ We implemented the logistic regression using pySpark from scrath. In order to co
 
 ## Python scripts submitted 
 
-    - stock_prediction_by_logistic_regression.py
+    - stock_prediction.py
+    - plot_training.py
 
 ## Other Documents (in the docs folder)
 
