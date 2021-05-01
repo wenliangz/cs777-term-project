@@ -1,6 +1,6 @@
 # CS777 Big Data Analytics Term Project
 
-## Discription: Using Logistic Regression to predict a stock for a buy or sell
+## Description: Using Logistic Regression to predict a stock for a buy or sell
 
 In this project, we implement a logistic regression model to predict a stock for either a buy or sell. We use Apple history stock data as an example. We have implemented the model from scratch using pySpark and optimized the model using Gradient Descent with bold drive. In order to compare predict accuracy, we have also implemented the logistic model using MLlib library. We've got very similar accuracy using both implementations. 
 
