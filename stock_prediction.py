@@ -243,7 +243,7 @@ if __name__ == '__main__':
     w, b = initialize_params(dim, 0)
     learningRate = 1E-4
     train_size = RDD_train.count()
-    num_iterations = 300
+    num_iterations = 200
     print('==>Training Model...')
     # lambd is the lambda value for regularization, set to 0 if you don't use regularization
     # weights is for the imbalance classes; default to native without balancing weights
@@ -274,11 +274,15 @@ if __name__ == '__main__':
     FN = lp_RDD.filter(lambda x: (x[0][0] == 1 and x[0][1] == 0)).count()
 
     if TP == 0 and FP == 0:
+        precision = 0
+        recall = 0
         f1_score = 0
     else:
         precision = TP / (TP + FP)
         recall = TP / (TP + FN)
         f1_score = 2 * precision * recall / (precision + recall)
+    print(f"Precision = {precision}")
+    print(f"Recall = {recall}")
     print(f'F1 score: {f1_score}')
 
     # ====================================== 7.Implementation using MLlib library ======================================
@@ -295,10 +299,10 @@ if __name__ == '__main__':
     predictionAndLabels = labeled_test_data.map(lambda lp: (float(model.predict(lp.features)), lp.label))
     metrics_multi = MulticlassMetrics(predictionAndLabels)
     # Overall statistics
-    precision = metrics_multi.precision(1.0)
-    recall = metrics_multi.recall(1.0)
-    f1Score = metrics_multi.fMeasure(1.0)
+    precision_lib = metrics_multi.precision(1.0)
+    recall_lib = metrics_multi.recall(1.0)
+    f1Score_lib = metrics_multi.fMeasure(1.0)
     print("==> Summary Stats for LogisticRegressionWithLBFGS:")
-    print(f"Precision = {precision}")
-    print(f"Recall = {recall}")
-    print(f"F1 Score = {f1Score}")
+    print(f"Precision = {precision_lib}")
+    print(f"Recall = {recall_lib}")
+    print(f"F1 Score = {f1Score_lib}")

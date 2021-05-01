@@ -24,7 +24,6 @@ with open('docs/training_printout.txt', 'r') as f:
 # print(epochs)
 # print(costs)
 
-
 epochs_toplot = epochs[1:]
 costs_toplot = costs[1:]
 
@@ -35,5 +34,5 @@ ax.set_xlabel('epochs')
 ax.set_ylabel('costs')
 plt.title('Logistic Regression \n using Gradient Descent with Bold Driver')
 ax.ticklabel_format(useOffset=False)
-plt.savefig('trainingcurve.jpg')
+plt.savefig('docs/trainingcurve.jpg')
 plt.show()

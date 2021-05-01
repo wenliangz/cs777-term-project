@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\plot_training.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\scripts\plot_training.py">
           <value>
             <Attribute>

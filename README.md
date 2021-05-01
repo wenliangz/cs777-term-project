@@ -20,7 +20,9 @@ The data used are the history data of APPL stock, from 2000-12-01 to 2021-4-30. 
 ## Feature Engineering
 Using time series historical data to predict future is very tricky. In order to make better predictions, instead of directly adding lots of historical time steps, we engineered some features by condensing information from previous time points into a single timestep with indicators. 
 
-In this example, we have chosen `Moving Average(MA)` and `Relative Strength Indicator(RSI)` for price and volume. We have created moving averages and rsi for the time periods of 14, 30, 50, and 200 for both close price and volume data. 
+In this example, we engineered new features using `Moving Average(MA)` and `Relative Strength Indicator(RSI)` for price and volume. We have created moving averages and rsi for the time periods of 14, 30, 50, and 200 for both close price and volume data.
+
+We use the percentage change of 5-day future Adj_close price, `5d_future_pct`, as the target. If it is positive, we label as 1, to buy; or if it is negative we label as 0, to sell.
 
 ## Implementation
 We implemented the logistic regression using pySpark from scrath. In order to compare, we have also implemented the model using MLlib library. For the detailed implementation and code, please refer to the program file, `stock_prediction_by_logistic_regression.py`.
