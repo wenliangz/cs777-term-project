@@ -31,14 +31,18 @@ We implemented the logistic regression using pySpark from scrath. In order to co
 
   ![training_curve](docs/trainingcurve.jpg)
 
-- Prediction result
+- Prediction results and model compare
   - our own implementation from scratch
    ```angular2html
-    F1 score: 0.7668133249528598
+    Precision = 0.6223350253807106
+    Recall = 1.0
+    F1 score: 0.7672090112640801
    ```
   - prediction from the model using MLlib
    ```angular2html
-   F1 Score = 0.7603305785123967
+    Precision = 0.6219512195121951
+    Recall = 0.99836867862969
+    F1 Score = 0.7664370695053224
    ```
 
 ## Python scripts submitted 
@@ -48,8 +52,10 @@ We implemented the logistic regression using pySpark from scrath. In order to co
 
 ## Other Documents (in the docs folder)
 
+    - powerpoint presentation
     - console printouts from the script
     - the plot of the training curve
+
 
 ## How to run  
 
