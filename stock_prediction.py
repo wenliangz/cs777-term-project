@@ -47,7 +47,7 @@ def initialize_params(dim, value):
 
 def propagate(RDD, w, b, size, class_weights=None):
     '''
-    calculate cost and derivative using map and treeAggregate
+    calculate cost and derivative using map and treeAggregate with whole batch
     gradientCost = RDD.map(y,x).map(y,x,a).map(cost,dw,db)
     '''
     seqOp = (lambda x, y: (x[0] + y[0], x[1] + y[1], x[2] + y[2]))
@@ -150,7 +150,7 @@ if __name__ == '__main__':
 
     # ======================================== 2. Data transformation ================================================
     # using windows function in pySpark to calculate percentage change, similar to pandas shift function
-    # Calculate Percentage of Price feature: `5d_close_pct`
+    # - Calculate Percentage of Price feature: `5d_close_pct`
     window_spec = Window().orderBy('Date')
     stock_data = stock_data.withColumn("5d_past_close", F.lag("Adj_Close", 5).over(window_spec))
     stock_data = stock_data.withColumn('5d_close_pct',
@@ -158,7 +158,7 @@ if __name__ == '__main__':
                                            '5d_past_close'])
     # stock_data.show()
 
-    # Calculate percentage of Volume feature: `1d_volume_pct`
+    # - Calculate percentage of Volume feature: `1d_volume_pct`
     stock_data = stock_data.withColumn("1d_past_volume", F.lag("Volume", 1).over(Window().orderBy('Date')))
     stock_data = stock_data.withColumn('1d_volume_pct',
                                        (stock_data['Volume'] - stock_data['1d_past_volume']) / stock_data[
@@ -166,7 +166,7 @@ if __name__ == '__main__':
     primary_features = ['5d_close_pct', '1d_volume_pct']
     # stock_data.show()
 
-    # Use 5 day future price percentage change as the response variable: `5d_future_pct`
+    # - Use 5 day future price percentage change as the response variable: `5d_future_pct`
     stock_data = stock_data.withColumn("5d_future_close", F.lead("Adj_Close", 5).over(window_spec))
     stock_data = stock_data.withColumn('5d_future_pct',
                                        (stock_data['5d_future_close'] - stock_data['Adj_Close']) / stock_data[
